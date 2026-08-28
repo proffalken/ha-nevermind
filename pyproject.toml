@@ -23,5 +23,6 @@ packages = ["custom_components/nevermind"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 asyncio_mode = "auto"
 addopts = "--tb=short -v"
