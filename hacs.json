@@ -1,0 +1,7 @@
+{
+  "name": "Nevermind",
+  "content_in_root": false,
+  "homeassistant": "2025.1.0",
+  "iot_class": "Cloud Polling",
+  "render_readme": true
+}
