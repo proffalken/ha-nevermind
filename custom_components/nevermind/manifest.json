@@ -1,0 +1,12 @@
+{
+  "domain": "nevermind",
+  "name": "Nevermind",
+  "codeowners": ["@proffalken"],
+  "config_flow": true,
+  "documentation": "https://github.com/proffalken/ha-nevermind",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/proffalken/ha-nevermind/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

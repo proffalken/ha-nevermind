@@ -11,9 +11,15 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = [
-    "homeassistant>=2025.1.0",
-    "pytest-homeassistant-custom-component>=0.13.0",
-    "aioresponses>=0.7.6",
+    # homeassistant pins an *exact* aiohttp version internally, and
+    # aioresponses monkeypatches aiohttp internals that occasionally change
+    # between releases (e.g. ClientResponse's constructor signature) — pin
+    # to a version combination confirmed to work together rather than an
+    # open floor, so a routine homeassistant point release can't silently
+    # break aioresponses in CI.
+    "homeassistant==2026.2.3",
+    "pytest-homeassistant-custom-component==0.13.316",
+    "aioresponses==0.7.9",
     "pytest>=8.3.0",
     "pytest-asyncio>=0.24.0",
 ]
@@ -23,5 +29,6 @@ packages = ["custom_components/nevermind"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 asyncio_mode = "auto"
 addopts = "--tb=short -v"

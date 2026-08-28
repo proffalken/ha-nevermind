@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v4
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: |
+          uv venv -p 3.13
+          uv pip install -e ".[dev]"
+
+      - name: Run tests
+        run: .venv/bin/pytest --tb=short -v
+
+  hassfest:
+    name: Hassfest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: home-assistant/actions/hassfest@master
+
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hacs/action@main
+        # Non-blocking: the repo has no LICENSE yet (deferred by choice),
+        # and hacs/action's `ignore` list doesn't cover the license check
+        # (only archived/brands/description/hacsjson/images/information/
+        # issues/topics are ignorable) — so this can't go green as a real
+        # gate until a license is added. Runs and reports anyway so brand
+        # assets and other checks are still visible.
+        continue-on-error: true
+        with:
+          category: integration
+          ignore: brands

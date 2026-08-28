@@ -1,0 +1,20 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "Enter your Nevermind instance URL and a personal API key (minted from the Nevermind web UI, Settings → API Keys).",
+        "data": {
+          "host": "Host",
+          "api_key": "API Key"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid API key",
+      "cannot_connect": "Could not connect to Nevermind"
+    },
+    "abort": {
+      "already_configured": "This Nevermind account is already configured"
+    }
+  }
+}
